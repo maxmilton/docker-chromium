@@ -59,7 +59,9 @@ _NOTE: The `:z` sets the correct SELinux role and allows read/write access._
 
 1. GPU is disabled by default — fast start up time, less memory usage, and less crashes due to missing graphics drivers. If you want to use it remove `--disable-gpu` at the end of `CMD` in the Dockerfile.
 
-2. The `--volume /dev/shm:/dev/shm` is necessary because Docker currently allocates 64 MB of memory to /dev/shm while chrome needs a lot more to function without crashing. On some systems it my not be required. [More info](https://github.com/c0b/chrome-in-docker/issues/1).
+2. Bug: Audio is sent to the default audio device and is not easily configurable.
+
+3. `--volume /dev/shm:/dev/shm` is necessary because Docker currently allocates 64 MB of memory to /dev/shm while chrome needs a lot more to function without crashing. On some systems it my not be required. [More info](https://github.com/c0b/chrome-in-docker/issues/1).
 
 ## Licence
 
