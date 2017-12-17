@@ -33,4 +33,4 @@ RUN set -xe \
 USER chromium
 
 ENTRYPOINT [ "/usr/bin/chromium" ]
-CMD [ "about:blank", "--user-data-dir=/data", "--disable-breakpad", "--disable-clear-browsing-data-counters", "--disable-default-apps", "--disable-extensions", "--disable-ntp-popular-sites", "--disable-ntp-snippets", "--enable-fast-unload", "--enable-tcp-fastopen", "--no-default-browser-check", "--no-first-run", "--no-pings", "--password-store=basic", "--reduced-referrer-granularity", "--tls13-variant=draft" ]
+CMD [ "about:blank", "--user-data-dir=/data", "--disable-breakpad", "--disable-clear-browsing-data-counters", "--disable-default-apps", "--disable-extensions", "--disable-ntp-popular-sites", "--disable-ntp-snippets", "--enable-fast-unload", "--enable-tcp-fastopen", "--no-default-browser-check", "--no-first-run", "--no-pings", "--password-store=basic", "--reduced-referrer-granularity", "--tls13-variant=draft", "--disable-gpu" ]
