@@ -32,17 +32,21 @@ You can optionally pass an alternate Docker command:
 
 ## Enabling persistence
 
-When run as is, the docker container is ephemeral so each time you launch an instance it's a completely fresh browser (useful for testing or as an incognito mode alternative). Browser data persistence is not enabled by default and requires extra steps.
+> TL;DR — Uncomment code, see: `launch.sh`.
 
-These steps will make the container data persist. Edit the `launch.sh` file `docker run` lines as follows:
+When run as is, the docker container is ephemeral so each time you launch an instance it's a completely fresh browser (useful for testing or as an incognito mode alternative). Browser data persistence is not enabled by default.
 
-1. To prevent removing container after exiting, delete the line:
+To make the container data persist edit the `launch.sh` file by commenting out the existing `docker run` and uncommenting the persistent docker run code. You can now sign in to create a profile etc.
+
+The differences are:
+
+1. Prevent removing container after exiting, so we don't need:
 
 ```bash
   --rm \
 ```
 
-2. Mount host volumes to store the data; add:
+2. Mount host volumes to store the data:
 
 _NOTE: The `:z` sets the correct SELinux role and allows read/write access._
 
