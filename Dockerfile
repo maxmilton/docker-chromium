@@ -30,6 +30,7 @@ RUN set -xe \
   && for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
 
 # run as non privileged user
+WORKDIR /home/chromium
 USER chromium
 
 ENTRYPOINT [ "/usr/bin/chromium" ]
