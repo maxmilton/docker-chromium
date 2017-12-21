@@ -18,8 +18,8 @@ docker run \
   --rm \
   --name chromium \
   --network host \
-  --cpuset-cpus 0 \
-  --memory 512mb \
+  --cpuset-cpus 0,1 \
+  --memory 1g \
   --read-only \
   --volume /tmp/.X11-unix:/tmp/.X11-unix:z \
   --env DISPLAY=unix"$DISPLAY" \
@@ -42,8 +42,8 @@ docker run \
 # docker run \
 #   --name chromium \
 #   --network host \
-#   --cpuset-cpus 0 \
-#   --memory 512mb \
+#   --cpuset-cpus 0,1 \
+#   --memory 1g \
 #   --read-only \
 #   --volume /tmp/.X11-unix:/tmp/.X11-unix:z \
 #   --env DISPLAY=unix"$DISPLAY" \
