@@ -56,13 +56,11 @@ _NOTE: The `:z` sets the correct SELinux role and allows read/write access._
 
 ## Additional considerations
 
-1. GPU is disabled by default — fast start up time, less memory usage, and less crashes due to missing graphics drivers. If you want to use it remove `--disable-gpu` at the end of `default-flags`.
+1. Bug: Audio is sent to the default audio device and is not easily configurable.
 
-2. Bug: Audio is sent to the default audio device and is not easily configurable.
+2. Uses a custom set of chromium flags for improved security and performance: `default-flags`.
 
-3. Uses a custom set of chromium flags for improved security and performance: `default-flags`.
-
-4. `--volume /dev/shm:/dev/shm` is necessary because Docker currently only allocates 64 MB of memory to /dev/shm but chromium needs a lot more to run without crashing. On some systems it my not be required. [More info](https://github.com/c0b/chrome-in-docker/issues/1).
+3. `--volume /dev/shm:/dev/shm` is necessary because Docker currently only allocates 64 MB of memory to /dev/shm but chromium needs a lot more to run without crashing. On some systems it my not be required. [More info](https://github.com/c0b/chrome-in-docker/issues/1).
 
 ## Licence
 

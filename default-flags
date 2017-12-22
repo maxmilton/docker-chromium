@@ -6,7 +6,7 @@ export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --user-data-dir=/data"
 # Disable things that don't make sense in an ephemeral instance
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --no-default-browser-check"
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --no-first-run"
-#export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-background-networking" # already in debian script
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-background-networking"
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-clear-browsing-data-counters"
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-default-apps"
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-extensions"
@@ -41,5 +41,5 @@ export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --show-component-extension-options"
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-ntp-popular-sites"
 export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-ntp-snippets"
 
-# Disable GPU rendering to prevent errors and crashes
-export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --disable-gpu"
+# Force GPU usage (actually prevents some errors)
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --ignore-gpu-blacklist"
