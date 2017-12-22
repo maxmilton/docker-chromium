@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Simple chromium launcher
+
+. /etc/chromium.d/apikeys
+. /etc/chromium.d/default-flags
+
+exec /usr/lib/chromium/chromium $CHROMIUM_FLAGS "$@"
