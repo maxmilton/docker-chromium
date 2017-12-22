@@ -7,6 +7,7 @@ RUN set -xe \
     chromium \
     fonts-liberation \
     fonts-roboto \
+    fonts-symbola \
     libcanberra-gtk-module \
     libgl1-mesa-dri \
     libgl1-mesa-glx \
