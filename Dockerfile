@@ -1,5 +1,8 @@
 # Run the Chromium browser in a container
 
+# docker build -t local/chromium .
+# docker build --no-cache -t local/chromium .
+
 FROM debian:testing-slim
 
 RUN set -xe \
