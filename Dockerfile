@@ -1,6 +1,6 @@
 # Run the Chromium browser in a container
 
-FROM debian:testing-slim
+FROM debian:testing-slim@sha256:b3864746d4e067c11b121bc0a6306db2cf328ca8481d58af86a6be75078847cb
 
 RUN set -xe \
   && apt-get update && apt-get install -y --no-install-recommends \
