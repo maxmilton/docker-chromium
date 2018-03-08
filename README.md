@@ -1,11 +1,10 @@
 # Chromium In A Container
 
-Launch an ephemeral chromium instance in a Docker container. It's likely this will only run on a Linux desktop with X11 compatibility.
+Launch an ephemeral chromium instance in a Docker container. Useful for times you need to quickly launch a browser that's completely fresh, e.g. web page testing or visiting suspect sites. By default, it's likely this will only run on a Linux desktop with X11 compatibility (e.g. Wayland + `xwayland`).
 
-Based on the [amazing work done by jessfraz](https://github.com/jessfraz/dockerfiles/blob/master/chromium/Dockerfile) but with many customisations for performance and security.
+Based on the [amazing work done by jessfraz](https://github.com/jessfraz/dockerfiles/blob/master/chromium/Dockerfile) but with much customisation.
 
-Uses a very opinionated set of chromium flags:
-[https://github.com/MaxMilton/docker-chromium/blob/master/default-flags](https://github.com/MaxMilton/docker-chromium/blob/master/default-flags)
+Uses a very opinionated [default configuration](https://github.com/MaxMilton/docker-chromium/blob/master/default.conf) for performance and security.
 
 ## Usage
 
