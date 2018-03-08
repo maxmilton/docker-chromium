@@ -1,39 +1,38 @@
 # Run the Chromium browser in a container
+#
+# Build image:
+#   docker build -t local/chromium .
+#
+# Update:
+#   docker build --no-cache -t local/chromium .
+#
 
-# docker build -t local/chromium .
-# docker build --no-cache -t local/chromium .
-
-FROM debian:testing-slim
+FROM alpine:edge
 
 RUN set -xe \
-  && apt-get update && apt-get install -y --no-install-recommends \
+  && addgroup -g 6006 -S chromium \
+	&& adduser -D -u 6006 -S -h /home/chromium -s /sbin/nologin -G chromium chromium \
+  && adduser chromium audio \
+  && adduser chromium video \
+  && apk add --no-cache \
     chromium \
-    fonts-liberation \
-    fonts-roboto \
-    fonts-symbola \
-    libcanberra-gtk-module \
-    libgl1-mesa-dri \
-    libgl1-mesa-glx \
-  && rm -rf /var/lib/apt/lists/* \
-  # add chromium user and set directory permissions
-  && groupadd -r -g 6006 chromium \
-  && useradd -r -u 6006 -s /sbin/nologin -g chromium -G audio,video chromium \
+    libcanberra-gtk3 \
+    # mesa-dri-intel \
+    # mesa-gl \
   && mkdir -p /data \
   && mkdir -p /home/chromium/Downloads \
   && chown -R chromium:chromium /data /home/chromium \
-  # remove unwanted chromium flags
-  && rm /etc/chromium.d/extensions \
   # unset SUID on all files
   && for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
 
 # override default chromium launcher
-COPY chromium /usr/bin/chromium
+COPY chromium /usr/lib/chromium/chromium-launcher.sh
 
 # custom chromium flags
-COPY default-flags /etc/chromium.d/default-flags
+COPY default.conf /etc/chromium/default.conf
 
 # run as non privileged user
 USER chromium
 
-ENTRYPOINT ["/usr/bin/chromium"]
+ENTRYPOINT ["/usr/bin/chromium-browser"]
 CMD ["about:blank"]

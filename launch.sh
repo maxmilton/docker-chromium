@@ -26,7 +26,6 @@ docker run \
   --group-add "$(getent group audio | cut -d: -f3)" \
   --device /dev/snd \
   --volume /dev/shm:/dev/shm:z \
-  --volume "$HOME"/.fonts/SourceHanSansJP:/home/chromium/.fonts/SourceHanSansJP:z \
   --tmpfs /run:rw,nosuid,nodev \
   --tmpfs /tmp:rw,nosuid,nodev \
   --tmpfs /data:rw,noexec,nosuid,nodev,uid=6006,gid=6006,mode=0700 \
