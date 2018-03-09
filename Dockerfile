@@ -12,20 +12,13 @@ FROM alpine:edge
 RUN set -xe \
   && addgroup -g 6006 -S chromium \
 	&& adduser -D -u 6006 -S -h /home/chromium -s /sbin/nologin -G chromium chromium \
-  && adduser chromium audio \
-  && adduser chromium video \
   && apk add --no-cache \
     chromium \
     libcanberra-gtk3 \
-    # mesa-dri-intel \
-    # mesa-gl \
-  && mkdir -p /data \
-  && mkdir -p /home/chromium/Downloads \
-  && chown -R chromium:chromium /data /home/chromium \
   # unset SUID on all files
   && for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
 
-# override default chromium launcher
+# override default launcher
 COPY chromium /usr/lib/chromium/chromium-launcher.sh
 
 # custom chromium flags
