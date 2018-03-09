@@ -15,6 +15,7 @@ RUN set -xe \
   && apk add --no-cache \
     chromium \
     libcanberra-gtk3 \
+    unifont \
   # unset SUID on all files
   && for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
 
