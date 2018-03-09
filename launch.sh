@@ -23,8 +23,6 @@ docker run \
   --read-only \
   --volume /tmp/.X11-unix:/tmp/.X11-unix:z \
   --env DISPLAY=unix"$DISPLAY" \
-  --group-add "$(getent group audio | cut -d: -f3)" \
-  --device /dev/snd \
   --volume /dev/shm:/dev/shm:z \
   --tmpfs /run:rw,nosuid,nodev \
   --tmpfs /tmp:rw,nosuid,nodev \
@@ -34,6 +32,9 @@ docker run \
   --security-opt no-new-privileges \
   --security-opt seccomp="$DIR"/seccomp.json \
   local/chromium $@
+  # TODO: Get audio working correctly cross-OS
+  # --group-add "$(getent group audio | cut -d: -f3)" \
+  # --device /dev/snd \
 
 # ------------------------------------------------- #
 
