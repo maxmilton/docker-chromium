@@ -32,6 +32,9 @@ docker run \
   --security-opt no-new-privileges \
   --security-opt seccomp="$DIR"/seccomp.json \
   local/chromium $@
+  # OR
+  # maxmilton/chromium $@
+
   # TODO: Get audio working correctly cross-OS
   # --group-add "$(getent group audio | cut -d: -f3)" \
   # --device /dev/snd \
@@ -61,3 +64,5 @@ docker run \
 #   --security-opt no-new-privileges \
 #   --security-opt seccomp="$DIR"/seccomp.json \
 #   local/chromium $@
+#   # OR
+#   # maxmilton/chromium $@

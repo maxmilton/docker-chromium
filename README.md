@@ -1,3 +1,7 @@
+<!-- markdownlint-disable first-line-h1 ol-prefix -->
+
+[![Build Status](https://travis-ci.org/MaxMilton/docker-chromium.svg?branch=master)](https://travis-ci.org/MaxMilton/docker-chromium)
+
 # Chromium In A Container
 
 Launch an ephemeral chromium instance in a Docker container. Useful for times you need to quickly launch a browser that's completely fresh, e.g. web page testing or visiting suspect sites. By default, it's likely this will only run on a Linux desktop with X11 compatibility (e.g. Wayland + `xwayland`).
@@ -12,6 +16,12 @@ Uses a very opinionated [default configuration](https://github.com/MaxMilton/doc
 
 ```bash
 docker build -t local/chromium .
+```
+
+Or, optionally you can download a pre-built image from Docker Hub (you'll also need to edit the `launch.sh` script):
+
+```bash
+docker pull maxmilton/chromium
 ```
 
 ### Run
@@ -30,7 +40,7 @@ You can optionally pass an alternate Docker command:
 
 ## Enabling persistence
 
-> TL;DR — Uncomment code, see: `launch.sh`.
+> TL;DR — edit: `launch.sh`; uncomment code.
 
 When run as is, the docker container is ephemeral so each time you launch an instance it's a completely fresh browser (useful for testing or as an incognito mode alternative). Browser data persistence is not enabled by default.
 
