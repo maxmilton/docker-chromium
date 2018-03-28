@@ -38,6 +38,14 @@ You can optionally pass an alternate Docker command:
 ./launch.sh http://localhost:8080 --allow-insecure-localhost
 ```
 
+#### Arch Linux launch bug
+
+If using Arch Linux the container will fail to launch, in which case you can use the alternative launch script (see comments in script):
+
+```bash
+./launch.insecure.sh
+```
+
 ## Enabling persistence
 
 > TL;DR — edit: `launch.sh`; uncomment code.
