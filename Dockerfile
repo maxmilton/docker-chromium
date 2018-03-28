@@ -11,10 +11,10 @@ FROM alpine:edge@sha256:ae8a1f9146d74466ddf1def02088ba33544db9aceef01f4b388c674a
 
 RUN set -xe \
   && addgroup -g 6006 -S chromium \
-	&& adduser -D -u 6006 -S -h /home/chromium -s /sbin/nologin -G chromium chromium \
+  && adduser -D -u 6006 -S -h /home/chromium -s /sbin/nologin -G chromium chromium \
   && apk add --no-cache \
     chromium \
-    libcanberra-gtk3 \
+    #libcanberra-gtk4 \ # audio related
     unifont \
   # unset SUID on all files
   && for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
