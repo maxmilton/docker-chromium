@@ -12,12 +12,14 @@ FROM alpine:edge@sha256:ae8a1f9146d74466ddf1def02088ba33544db9aceef01f4b388c674a
 RUN set -xe \
   && addgroup -g 6006 -S chromium \
   && adduser -D -u 6006 -S -h /home/chromium -s /sbin/nologin -G chromium chromium \
+  && adduser chromium audio \
+  && adduser chromium video \
   && apk add --no-cache \
     chromium \
-    #libcanberra-gtk4 \ # audio related
-    unifont \
-  # unset SUID on all files
-  && for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
+    libcanberra-gtk3 \
+    mesa-dri-intel \
+    mesa-gl \
+    unifont
 
 # override default launcher
 COPY chromium /usr/lib/chromium/chromium-launcher.sh

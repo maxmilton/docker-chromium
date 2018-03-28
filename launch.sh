@@ -18,49 +18,56 @@ docker run \
   --rm \
   --name chromium \
   --network host \
-  --cpuset-cpus 0,1 \
-  --memory 1g \
+  --memory 2g \
   --read-only \
-  --volume /tmp/.X11-unix:/tmp/.X11-unix:z \
-  --env DISPLAY=unix"$DISPLAY" \
-  --volume /dev/shm:/dev/shm:z \
   --tmpfs /run:rw,nosuid,nodev \
   --tmpfs /tmp:rw,nosuid,nodev \
   --tmpfs /data:rw,noexec,nosuid,nodev,uid=6006,gid=6006,mode=0700 \
   --tmpfs /home/chromium:rw,nosuid,nodev,uid=6006,gid=6006,mode=0700,size=4m \
+  --volume /dev/shm:/dev/shm \
+  --volume /etc/localtime:/etc/localtime:ro \
+  --volume /tmp/.X11-unix:/tmp/.X11-unix \
+  --device /dev/snd \
+  --device /dev/dri \
+  --device /dev/video0 \
+  --env DISPLAY=unix"$DISPLAY" \
+  --group-add audio \
+  --group-add video \
   --cap-drop=all \
+  --cap-add SYS_ADMIN \
   --security-opt no-new-privileges \
   --security-opt seccomp="$DIR"/seccomp.json \
   local/chromium $@
   # OR
   # maxmilton/chromium $@
 
-  # TODO: Get audio working correctly cross-OS
-  # --group-add "$(getent group audio | cut -d: -f3)" \
-  # --device /dev/snd \
-
 # ------------------------------------------------- #
 
 # chromium with persistence
 
 # docker run \
+#   --rm \
 #   --name chromium \
 #   --network host \
-#   --cpuset-cpus 0,1 \
-#   --memory 1g \
+#   --memory 2g \
 #   --read-only \
-#   --volume /tmp/.X11-unix:/tmp/.X11-unix:z \
-#   --env DISPLAY=unix"$DISPLAY" \
-#   --group-add "$(getent group audio | cut -d: -f3)" \
-#   --device /dev/snd \
-#   --volume "$HOME"/Downloads:/home/chromium/Downloads:z \
-#   --volume "$HOME"/.config/chromium/:/data:z \
-#   --volume /dev/shm:/dev/shm:z \
 #   --tmpfs /run:rw,nosuid,nodev \
 #   --tmpfs /tmp:rw,nosuid,nodev \
 #   --tmpfs /data:rw,noexec,nosuid,nodev,uid=6006,gid=6006,mode=0700 \
 #   --tmpfs /home/chromium:rw,nosuid,nodev,uid=6006,gid=6006,mode=0700,size=4m \
+#   --volume /dev/shm:/dev/shm \
+#   --volume /etc/localtime:/etc/localtime:ro \
+#   --volume /tmp/.X11-unix:/tmp/.X11-unix \
+#   --volume "$HOME"/Downloads:/home/chromium/Downloads:z \
+#   --volume "$HOME"/.config/chromium/:/data:z \
+#   --device /dev/snd \
+#   --device /dev/dri \
+#   --device /dev/video0 \
+#   --env DISPLAY=unix"$DISPLAY" \
+#   --group-add audio \
+#   --group-add video \
 #   --cap-drop=all \
+#   --cap-add SYS_ADMIN \
 #   --security-opt no-new-privileges \
 #   --security-opt seccomp="$DIR"/seccomp.json \
 #   local/chromium $@
