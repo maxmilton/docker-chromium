@@ -57,8 +57,8 @@ docker run \
 #   --volume /dev/shm:/dev/shm \
 #   --volume /etc/localtime:/etc/localtime:ro \
 #   --volume /tmp/.X11-unix:/tmp/.X11-unix \
-#   --volume "$HOME"/Downloads:/home/chromium/Downloads:z \
-#   --volume "$HOME"/.config/chromium/:/data:z \
+#   --volume "$HOME"/Downloads:/home/chromium/Downloads \
+#   --volume "$HOME"/.config/chromium/:/data \
 #   --device /dev/snd \
 #   --device /dev/dri \
 #   --device /dev/video0 \

@@ -46,6 +46,15 @@ If using Arch Linux the container will fail to launch, in which case you can use
 ./launch.insecure.sh
 ```
 
+#### SELinux volumes
+
+If you're using a system with SELinux enabled (e.g. Fedora Linux) you'll need to add `:z` to the end of each `--volume` so Docker labels the volume correctly. For example:
+
+```bash
+  --volume "$HOME"/Downloads:/home/chromium/Downloads:z \
+  --volume "$HOME"/.config/chromium/:/data:z \
+```
+
 ## Enabling persistence
 
 > TL;DR — edit: `launch.sh`; uncomment code.
