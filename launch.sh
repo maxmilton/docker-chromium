@@ -46,7 +46,6 @@ docker run \
 # chromium with persistence
 
 # docker run \
-#   --rm \
 #   --name chromium \
 #   --network host \
 #   --memory 2g \
