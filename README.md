@@ -94,4 +94,4 @@ Released under the MIT licence; see [LICENCE](https://github.com/MaxMilton/docke
 
 -----
 
-© 2017 [We Are Genki](https://wearegenki.com)
+© 2018 [Max Milton](https://maxmilton.com)
