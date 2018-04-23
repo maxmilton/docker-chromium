@@ -1,9 +1,9 @@
 #!/bin/bash
 #
 # README:
-#   On Arch Linux this image wont't work out of the box and needs the extra
-#   "--cap-add SYS_ADMIN" line plus some other removed. Since this is insecure
-#   it's best to only run this launch script if truly necessary.
+#   On Arch Linux the image doesn't work out of the box and needs the extra
+#   "--cap-add SYS_ADMIN" line plus some others removed. Since this is insecure,
+#   only use this launch script if truly necessary.
 #
 
 # revoke X11 forwarding permission on exit
@@ -16,7 +16,7 @@ DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 # allow X11 forwarding permission
 xhost +local:"$USER"
 
-# minimal chromium; no persistence
+# minimal chromium; no persistence; insecure
 docker run \
   --rm \
   --name chromium \
@@ -39,5 +39,3 @@ docker run \
   --cap-add SYS_ADMIN \
   --security-opt seccomp="$DIR"/seccomp.json \
   local/chromium $@
-  # --cap-drop=all \
-  # --security-opt no-new-privileges \
