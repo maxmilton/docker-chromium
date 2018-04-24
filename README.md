@@ -14,13 +14,13 @@ Uses a very opinionated [default configuration](https://github.com/MaxMilton/doc
 
 ### Build
 
-```bash
+```sh
 docker build -t local/chromium .
 ```
 
 Or, optionally you can download a pre-built image from Docker Hub (you'll also need to edit the `launch.sh` script):
 
-```bash
+```sh
 docker pull maxmilton/chromium
 ```
 
@@ -28,13 +28,13 @@ docker pull maxmilton/chromium
 
 _NOTE: The default page is `about:blank` for fast launch time._
 
-```bash
+```sh
 ./launch.sh
 ```
 
 You can optionally pass an alternate Docker command:
 
-```bash
+```sh
 ./launch.sh http://localhost:8080 --allow-insecure-localhost
 ```
 
@@ -42,7 +42,7 @@ You can optionally pass an alternate Docker command:
 
 If using Arch Linux the container will fail to launch, in which case you can use the alternative launch script (see comments in script):
 
-```bash
+```sh
 ./launch.insecure.sh
 ```
 
@@ -50,7 +50,7 @@ If using Arch Linux the container will fail to launch, in which case you can use
 
 If you're using a system with SELinux enabled (e.g. Fedora Linux) you'll need to add `:z` to the end of each `--volume` so Docker labels the volume correctly. For example:
 
-```bash
+```sh
   --volume "$HOME"/Downloads:/home/chromium/Downloads:z \
   --volume "$HOME"/.config/chromium/:/data:z \
 ```
@@ -67,7 +67,7 @@ The differences are:
 
 1. Prevent removing container after exiting, so we don't need:
 
-```bash
+```sh
   --rm \
 ```
 
@@ -75,16 +75,20 @@ The differences are:
 
 _NOTE: The `:z` sets the correct SELinux role and allows read/write access._
 
-```bash
+```sh
   --volume "$HOME"/Downloads:/home/chromium/Downloads:z \
   --volume "$HOME"/.config/chromium/:/data:z \
 ```
 
 ## Additional considerations
 
-1. Bug: Audio is sent to the default audio device and is not easily configurable.
+1. Only characters covered by Open Sans will be rendered. For additional character coverage, e.g. Japanese, you'll need to include fonts from your system. Add a line similar to this in your launch script:
 
-2. Uses a custom set of chromium flags for improved security and performance: `default-flags`.
+```sh
+--volume /usr/share/fonts/uddigikyokasho:/usr/share/fonts/uddigikyokasho \
+```
+
+2. Uses a custom set of chromium flags for improved security and performance, see [`default.conf`](https://github.com/MaxMilton/docker-chromium/blob/master/default.conf).
 
 3. `--volume /dev/shm:/dev/shm` is necessary because Docker currently only allocates 64 MB of memory to /dev/shm but chromium needs a lot more to run without crashing. On some systems it my not be required. [More info](https://github.com/c0b/chrome-in-docker/issues/1).
 
