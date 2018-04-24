@@ -17,6 +17,32 @@ DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 xhost +local:"$USER"
 
 # minimal chromium; no persistence; insecure
+# docker run \
+#   --rm \
+#   --name chromium \
+#   --network host \
+#   --memory 2gb \
+#   --read-only \
+#   --tmpfs /run:rw,nosuid,nodev \
+#   --tmpfs /tmp:rw,nosuid,nodev \
+#   --tmpfs /data:rw,noexec,nosuid,nodev,uid=6006,gid=6006,mode=0700 \
+#   --tmpfs /home/chromium:rw,nosuid,nodev,uid=6006,gid=6006,mode=0700,size=4m \
+#   --volume /dev/shm:/dev/shm \
+#   --volume /etc/localtime:/etc/localtime:ro \
+#   --volume /tmp/.X11-unix:/tmp/.X11-unix \
+#   --device /dev/snd \
+#   --device /dev/dri \
+#   --device /dev/video0 \
+#   --env DISPLAY=unix"$DISPLAY" \
+#   --group-add audio \
+#   --group-add video \
+#   --cap-add SYS_ADMIN \
+#   --security-opt seccomp="$DIR"/seccomp.json \
+#   local/chromium $@
+
+# Arch Linux version with special sound configuration and extra CJK fonts
+# NOTE: If using this you'll probably want to remove the extra font line and
+# edit the alsa device
 docker run \
   --rm \
   --name chromium \
@@ -30,12 +56,17 @@ docker run \
   --volume /dev/shm:/dev/shm \
   --volume /etc/localtime:/etc/localtime:ro \
   --volume /tmp/.X11-unix:/tmp/.X11-unix \
+	--volume ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
   --device /dev/snd \
   --device /dev/dri \
   --device /dev/video0 \
   --env DISPLAY=unix"$DISPLAY" \
-  --group-add audio \
+	--env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
   --group-add video \
+	--group-add $(getent group audio | cut -d: -f3) \
   --cap-add SYS_ADMIN \
   --security-opt seccomp="$DIR"/seccomp.json \
-  local/chromium $@
+  \
+  --volume /usr/share/fonts/uddigikyokasho:/usr/share/fonts/uddigikyokasho \
+  \
+  local/chromium --alsa-output-device=hw:0,3 $@
