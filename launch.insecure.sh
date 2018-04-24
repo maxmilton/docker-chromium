@@ -41,8 +41,7 @@ xhost +local:"$USER"
 #   local/chromium $@
 
 # Arch Linux version with special sound configuration and extra CJK fonts
-# NOTE: If using this you'll probably want to remove the extra font line and
-# edit the alsa device
+# NOTE: Edit or remove the extra font line and alsa device
 docker run \
   --rm \
   --name chromium \
@@ -69,4 +68,4 @@ docker run \
   \
   --volume /usr/share/fonts/uddigikyokasho:/usr/share/fonts/uddigikyokasho \
   \
-  local/chromium --alsa-output-device=hw:0,3 $@
+  local/chromium --alsa-output-device=hw:0,3 about:blank
