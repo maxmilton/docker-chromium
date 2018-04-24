@@ -1,9 +1,6 @@
 # Run the Chromium browser in a container
 #
-# Build image:
-#   docker build -t local/chromium .
-#
-# Update:
+# Build or update image:
 #   docker build --no-cache -t local/chromium .
 #
 
@@ -18,8 +15,7 @@ RUN set -xe \
     chromium \
     libcanberra-gtk3 \
     mesa-dri-intel \
-    mesa-gl \
-    unifont
+    mesa-gl
 
 # override default launcher
 COPY chromium /usr/lib/chromium/chromium-launcher.sh
