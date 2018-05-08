@@ -4,7 +4,7 @@
 #   docker build --no-cache -t local/chromium .
 #
 
-FROM alpine:edge@sha256:79c2c5f6db53da44f90bb2731f29f725b5b14c378407a123776b6d3c76e6aebe
+FROM alpine:edge@sha256:6fa3225360ea1a48aaee4ca87de66e8e12b9a4f749f37acc7b4b5b9cc3d91b13
 
 RUN set -xe \
   && addgroup -g 6006 -S chromium \
