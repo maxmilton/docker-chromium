@@ -55,14 +55,14 @@ docker run \
   --volume /dev/shm:/dev/shm \
   --volume /etc/localtime:/etc/localtime:ro \
   --volume /tmp/.X11-unix:/tmp/.X11-unix \
-	--volume ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
+	--volume "$XDG_RUNTIME_DIR"/pulse/native:"$XDG_RUNTIME_DIR"/pulse/native \
   --device /dev/snd \
   --device /dev/dri \
   --device /dev/video0 \
   --env DISPLAY=unix"$DISPLAY" \
-	--env PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
+	--env PULSE_SERVER=unix:"$XDG_RUNTIME_DIR"/pulse/native \
   --group-add video \
-	--group-add $(getent group audio | cut -d: -f3) \
+	--group-add "$(getent group audio | cut -d: -f3)" \
   --cap-add SYS_ADMIN \
   --security-opt seccomp="$DIR"/seccomp.json \
   \
