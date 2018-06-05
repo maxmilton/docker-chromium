@@ -25,7 +25,6 @@ docker run \
   --tmpfs /data:rw,noexec,nosuid,nodev,uid=6006,gid=6006,mode=0700 \
   --tmpfs /home/chromium:rw,nosuid,nodev,uid=6006,gid=6006,mode=0700,size=4m \
   --volume /dev/shm:/dev/shm \
-  --volume /etc/localtime:/etc/localtime:ro \
   --volume /tmp/.X11-unix:/tmp/.X11-unix \
   --device /dev/snd \
   --device /dev/dri \
@@ -55,6 +54,7 @@ docker run \
 #   --tmpfs /data:rw,noexec,nosuid,nodev,uid=6006,gid=6006,mode=0700 \
 #   --tmpfs /home/chromium:rw,nosuid,nodev,uid=6006,gid=6006,mode=0700,size=4m \
 #   --volume /dev/shm:/dev/shm \
+#   --volume /etc/timezone:/etc/timezone:ro \
 #   --volume /etc/localtime:/etc/localtime:ro \
 #   --volume /tmp/.X11-unix:/tmp/.X11-unix \
 #   --volume "$HOME"/Downloads:/home/chromium/Downloads \

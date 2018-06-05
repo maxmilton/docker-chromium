@@ -28,7 +28,6 @@ xhost +local:"$USER"
 #   --tmpfs /data:rw,noexec,nosuid,nodev,uid=6006,gid=6006,mode=0700 \
 #   --tmpfs /home/chromium:rw,nosuid,nodev,uid=6006,gid=6006,mode=0700,size=4m \
 #   --volume /dev/shm:/dev/shm \
-#   --volume /etc/localtime:/etc/localtime:ro \
 #   --volume /tmp/.X11-unix:/tmp/.X11-unix \
 #   --device /dev/snd \
 #   --device /dev/dri \
@@ -40,7 +39,7 @@ xhost +local:"$USER"
 #   --security-opt seccomp="$DIR"/seccomp.json \
 #   local/chromium $@
 
-# Arch Linux version with special sound configuration and extra CJK fonts
+# Arch Linux version with special sound configuration and extra Japanese fonts
 # NOTE: Edit or remove the extra font line and alsa device
 docker run \
   --rm \
@@ -53,7 +52,6 @@ docker run \
   --tmpfs /data:rw,noexec,nosuid,nodev,uid=6006,gid=6006,mode=0700 \
   --tmpfs /home/chromium:rw,nosuid,nodev,uid=6006,gid=6006,mode=0700,size=4m \
   --volume /dev/shm:/dev/shm \
-  --volume /etc/localtime:/etc/localtime:ro \
   --volume /tmp/.X11-unix:/tmp/.X11-unix \
 	--volume "$XDG_RUNTIME_DIR"/pulse/native:"$XDG_RUNTIME_DIR"/pulse/native \
   --device /dev/snd \

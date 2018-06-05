@@ -73,7 +73,7 @@ The differences are:
 
 2. Mount host volumes to store the data:
 
-_NOTE: The `:z` sets the correct SELinux role and allows read/write access._
+_NOTE: The `:z` sets the correct SELinux role and allows read/write access, remove it if you don't use SELinux._
 
 ```sh
   --volume "$HOME"/Downloads:/home/chromium/Downloads:z \
@@ -90,7 +90,11 @@ _NOTE: The `:z` sets the correct SELinux role and allows read/write access._
 
 2. Uses a custom set of chromium flags for improved security and performance, see [`default.conf`](https://github.com/MaxMilton/docker-chromium/blob/master/default.conf).
 
-3. `--volume /dev/shm:/dev/shm` is necessary because Docker currently only allocates 64 MB of memory to /dev/shm but chromium needs a lot more to run without crashing. On some systems it my not be required. [More info](https://github.com/c0b/chrome-in-docker/issues/1).
+3. Container timezone is set to UTC.
+
+4. Runs as a guest session by default even when persistence is configured.
+
+5. `--volume /dev/shm:/dev/shm` is necessary because Docker currently only allocates 64 MB of memory to /dev/shm but chromium needs a lot more to run without crashing. On some systems it my not be required. [More info](https://github.com/c0b/chrome-in-docker/issues/1).
 
 ## Licence
 
