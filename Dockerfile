@@ -4,8 +4,6 @@
 #   docker build --no-cache -t local/chromium .
 #
 
-# TODO: Chromium on Alpine Linux is poorly maintained, consider switching back to Debian
-
 FROM alpine:edge@sha256:6fa3225360ea1a48aaee4ca87de66e8e12b9a4f749f37acc7b4b5b9cc3d91b13
 
 RUN set -xe \
@@ -29,6 +27,9 @@ COPY chromium /usr/lib/chromium/chromium-launcher.sh
 
 # custom chromium flags
 COPY default.conf /etc/chromium/default.conf
+
+# custom font config
+COPY local.conf /etc/fonts/local.conf
 
 # run as non privileged user
 USER chromium
