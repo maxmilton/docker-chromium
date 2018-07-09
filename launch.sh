@@ -1,7 +1,9 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # revoke X11 forwarding permission on exit
-set -eo errtrace
+set -o errtrace
 trap 'xhost -local:$USER' EXIT
 
 # directory of this script
@@ -36,9 +38,9 @@ docker run \
   --cap-add SYS_ADMIN \
   --security-opt no-new-privileges \
   --security-opt seccomp="$DIR"/seccomp.json \
-  local/chromium $@
+  local/chromium "$@"
   # OR
-  # maxmilton/chromium $@
+  # maxmilton/chromium "$@"
 
 # ------------------------------------------------- #
 
@@ -69,6 +71,6 @@ docker run \
 #   --cap-add SYS_ADMIN \
 #   --security-opt no-new-privileges \
 #   --security-opt seccomp="$DIR"/seccomp.json \
-#   local/chromium $@
+#   local/chromium "$@"
 #   # OR
-#   # maxmilton/chromium $@
+#   # maxmilton/chromium "$@"

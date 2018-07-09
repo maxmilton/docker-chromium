@@ -1,13 +1,14 @@
 #!/bin/bash
-#
+set -euo pipefail
+IFS=$'\n\t'
+
 # README:
 #   On Arch Linux the image doesn't work out of the box and needs the extra
 #   "--cap-add SYS_ADMIN" line plus some others removed. Since this is insecure,
 #   only use this launch script if truly necessary.
-#
 
 # revoke X11 forwarding permission on exit
-set -eo errtrace
+set -o errtrace
 trap 'xhost -local:$USER' EXIT
 
 # directory of this script
@@ -37,7 +38,7 @@ xhost +local:"$USER"
 #   --group-add video \
 #   --cap-add SYS_ADMIN \
 #   --security-opt seccomp="$DIR"/seccomp.json \
-#   local/chromium $@
+#   local/chromium "$@"
 
 # Arch Linux version with special sound configuration and extra Japanese fonts
 # NOTE: Edit or remove the extra font line and alsa device
