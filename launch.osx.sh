@@ -10,16 +10,16 @@ DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 # revoke X11 forwarding permission and kill all child jobs (socat) on exit
 set -o errtrace
 trap "exit" INT TERM
-trap "xhost - $IP; kill 0" EXIT
+trap "/opt/X11/bin/xhost - $IP; kill 0" EXIT
 
 # allow X11 forwarding permission
-xhost + $IP
+/opt/X11/bin/xhost + $IP
 
 # forward xserver
-socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:"$DISPLAY" &
+/usr/local/bin/socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:"$DISPLAY" &
 
 # minimal chromium; no persistence
-docker run \
+/usr/local/bin/docker run \
   --rm \
   --name chromium \
   --network host \
