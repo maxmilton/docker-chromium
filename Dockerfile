@@ -23,7 +23,7 @@ RUN set -xe \
   && apk del .system-deps
 
 # override default launcher
-COPY chromium /usr/lib/chromium/chromium-launcher.sh
+COPY chromium-launcher.sh /usr/lib/chromium/chromium-launcher.sh
 
 # custom chromium flags
 COPY default.conf /etc/chromium/default.conf
