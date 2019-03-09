@@ -1,4 +1,6 @@
-<!-- markdownlint-disable first-line-h1 ol-prefix -->
+**DEPRECATED: Use the image from my `dockerfiles` repo instead: <https://github.com/MaxMilton/dockerfiles/tree/master/chromium>**
+
+---
 
 [![Build Status](https://travis-ci.org/MaxMilton/docker-chromium.svg?branch=master)](https://travis-ci.org/MaxMilton/docker-chromium) [![Image version](https://images.microbadger.com/badges/version/maxmilton/chromium.svg)](https://microbadger.com/images/maxmilton/chromium) [![Image layers](https://images.microbadger.com/badges/image/maxmilton/chromium.svg)](https://microbadger.com/images/maxmilton/chromium)
 
